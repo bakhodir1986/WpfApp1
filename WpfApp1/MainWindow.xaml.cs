@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Shapes;
+using WpfApp1.Model;
 
 namespace WpfApp1
 {
@@ -53,6 +55,7 @@ namespace WpfApp1
             //Create Columns
             PivodGrid.ShowGridLines = true;
             PivodGrid.Background = new SolidColorBrush(Colors.White);
+            
 
             PivodGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(60) });
             PivodGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(200) });
@@ -169,8 +172,22 @@ namespace WpfApp1
                 {
                     RowDefinition gridRowN = new RowDefinition();
                     gridRowN.Height = new GridLength(45);
-                    
                     PivodGrid.RowDefinitions.Add(gridRowN);
+                    
+                    SolidColorBrush color = new SolidColorBrush();
+
+                    if (pivod.colorOfRow == StatusColor.Gray)
+                    {
+                        color.Color = Colors.Gainsboro;
+                    }
+                    else if (pivod.colorOfRow == StatusColor.Blue)
+                    {
+                        color.Color = Colors.CornflowerBlue;
+                    }
+                    else if (pivod.colorOfRow == StatusColor.Red)
+                    {
+                        color.Color = Colors.LightPink;
+                    }
 
                     TextBlock txtBlockCell1 = new TextBlock();
                     txtBlockCell1.Text = pivod.TourId.ToString();
@@ -181,6 +198,12 @@ namespace WpfApp1
                     txtBlockCell1.HorizontalAlignment = HorizontalAlignment.Center;
                     Grid.SetRow(txtBlockCell1, row);
                     Grid.SetColumn(txtBlockCell1, 0);
+
+                    Rectangle rect1 = new Rectangle();
+                    rect1.Fill = color;
+                    Grid.SetRow(rect1, row);
+                    Grid.SetColumn(rect1, 0);
+                    PivodGrid.Children.Add(rect1);
 
                     PivodGrid.Children.Add(txtBlockCell1);
 
@@ -194,6 +217,12 @@ namespace WpfApp1
                     Grid.SetRow(txtBlockCell2, row);
                     Grid.SetColumn(txtBlockCell2, 1);
 
+                    Rectangle rect2 = new Rectangle();
+                    rect2.Fill = color;
+                    Grid.SetRow(rect2, row);
+                    Grid.SetColumn(rect2, 1);
+                    PivodGrid.Children.Add(rect2);
+
                     PivodGrid.Children.Add(txtBlockCell2);
 
                     TextBlock txtBlockCell3 = new TextBlock();
@@ -205,6 +234,12 @@ namespace WpfApp1
                     txtBlockCell3.HorizontalAlignment = HorizontalAlignment.Center;
                     Grid.SetRow(txtBlockCell3, row);
                     Grid.SetColumn(txtBlockCell3, 2);
+
+                    Rectangle rect3 = new Rectangle();
+                    rect3.Fill = color;
+                    Grid.SetRow(rect3, row);
+                    Grid.SetColumn(rect3, 2);
+                    PivodGrid.Children.Add(rect3);
 
                     PivodGrid.Children.Add(txtBlockCell3);
 
@@ -218,6 +253,13 @@ namespace WpfApp1
                         txtBlockCellN.Foreground = new SolidColorBrush(Colors.Green);
                         txtBlockCellN.VerticalAlignment = VerticalAlignment.Center;
                         txtBlockCellN.HorizontalAlignment = HorizontalAlignment.Center;
+
+                        Rectangle rectN = new Rectangle();
+                        rectN.Fill = color;
+                        Grid.SetRow(rectN, row);
+                        Grid.SetColumn(rectN, col);
+                        PivodGrid.Children.Add(rectN);
+
                         Grid.SetRow(txtBlockCellN, row);
                         Grid.SetColumn(txtBlockCellN, col++);
 

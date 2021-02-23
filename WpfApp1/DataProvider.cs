@@ -154,6 +154,73 @@ namespace WpfApp1
 
             #endregion
 
+            #region Tour3
+            var result3 = new ResultModel();
+            var tourPlaceDaysList3 = new List<TourPlacesModel>();
+            var tour3 = new ToursModel();
+
+            result3.toursModel = tour3;
+            result3.tourPlacesModels = tourPlaceDaysList3;
+
+            resultModelList.Add(result3);
+
+            tour3.Id = 3;
+            tour3.JointGroups = "Tour # 3";
+            dateString = "01.03.2021";
+            tour3.StartDate = DateTime.ParseExact(dateString, format, provider);
+            dateString = "05.03.2021";
+            tour3.EndDate = DateTime.ParseExact(dateString, format, provider);
+            tour3.Status = 2;
+            tour3.PeopleCount = 4;
+
+
+            var tourPlace3Day1 = new TourPlacesModel();
+            tourPlace3Day1.Id = 1;
+            tourPlace3Day1.TourId = 2;
+            dateString = "01.03.2021";
+            tourPlace3Day1.HappenDate = DateTime.ParseExact(dateString, format, provider);
+            tourPlace3Day1.PlaceName = "Day1 Place 2 $$$$";
+
+            tourPlaceDaysList3.Add(tourPlace3Day1);
+
+            var tourPlace3Day2 = new TourPlacesModel();
+            tourPlace3Day2.Id = 1;
+            tourPlace3Day2.TourId = 2;
+            dateString = "02.03.2021";
+            tourPlace3Day2.HappenDate = DateTime.ParseExact(dateString, format, provider);
+            tourPlace3Day2.PlaceName = "Day2 Place 2 $$$$";
+
+            tourPlaceDaysList3.Add(tourPlace3Day2);
+
+            var tourPlace3Day3 = new TourPlacesModel();
+            tourPlace3Day3.Id = 1;
+            tourPlace3Day3.TourId = 2;
+            dateString = "03.03.2021";
+            tourPlace3Day3.HappenDate = DateTime.ParseExact(dateString, format, provider);
+            tourPlace3Day3.PlaceName = "Day3 Place 2 $$$$";
+
+            tourPlaceDaysList3.Add(tourPlace3Day3);
+
+            var tourPlace3Day4 = new TourPlacesModel();
+            tourPlace3Day4.Id = 1;
+            tourPlace3Day4.TourId = 2;
+            dateString = "04.03.2021";
+            tourPlace3Day4.HappenDate = DateTime.ParseExact(dateString, format, provider);
+            tourPlace3Day4.PlaceName = "Day4 Place 2 $$$$";
+
+            tourPlaceDaysList3.Add(tourPlace3Day4);
+
+            var tourPlace3Day5 = new TourPlacesModel();
+            tourPlace3Day5.Id = 1;
+            tourPlace3Day5.TourId = 2;
+            dateString = "05.03.2021";
+            tourPlace3Day5.HappenDate = DateTime.ParseExact(dateString, format, provider);
+            tourPlace3Day5.PlaceName = "Day5 Place 2 $$$$";
+
+            tourPlaceDaysList3.Add(tourPlace3Day5);
+
+            #endregion
+
             return resultModelList;
         }
     }
