@@ -21,6 +21,10 @@ namespace WpfApp1
         private const int ThirdColumnWidthPixels = 200;
         private const int PivodColumnsWidthPixes = 120;
 
+        private Color TableBackgroundColor = Colors.White;
+        private bool ShowGridLines = true;
+        private Color DefaultTextColor = Colors.Green;
+
         #endregion
 
         public MainWindow()
@@ -110,7 +114,7 @@ namespace WpfApp1
         private void AddNewRow()
         {
             RowDefinition gridRowN = new RowDefinition();
-            gridRowN.Height = new GridLength(45);
+            gridRowN.Height = new GridLength(RowHeightPixels);
             PivodGrid.RowDefinitions.Add(gridRowN);
         }
 
@@ -130,7 +134,7 @@ namespace WpfApp1
             txtBlockCellN.Text = printValue;
             txtBlockCellN.FontSize = 14;
             txtBlockCellN.FontWeight = FontWeights.Bold;
-            txtBlockCellN.Foreground = new SolidColorBrush(Colors.Green);
+            txtBlockCellN.Foreground = new SolidColorBrush(DefaultTextColor);
             txtBlockCellN.VerticalAlignment = VerticalAlignment.Center;
             txtBlockCellN.HorizontalAlignment = HorizontalAlignment.Center;
 
@@ -171,8 +175,8 @@ namespace WpfApp1
 
         private void ConfigPivodTableGeneral()
         {
-            PivodGrid.ShowGridLines = true;
-            PivodGrid.Background = new SolidColorBrush(Colors.White);
+            PivodGrid.ShowGridLines = ShowGridLines;
+            PivodGrid.Background = new SolidColorBrush(TableBackgroundColor);
         }
 
         private void CreateHeaderOfPivodTable(List<PivodTableModel> pivodModelList)
