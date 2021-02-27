@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -119,10 +120,12 @@ namespace WpfApp1
         private void FillDataToDataGridPivodTable(List<PivodTableModel> pivodModelList)
         {
             int col = 3;
-            int row = 3;
+            int row = 0;
 
             foreach (var pivod in pivodModelList)
             {
+                var color = SetColorFromStatus(pivod);
+
                 dynamic rowToAdd = new ExpandoObject();
 
                 var colValue = string.Format("Column{0}", 0);
@@ -142,6 +145,23 @@ namespace WpfApp1
 
                 PivodDataGrid.Items.Add(rowToAdd);
 
+                SetColorToCell(color, PivodDataGrid, row, 0);
+                SetColorToCell(color, PivodDataGrid, row, 1);
+                SetColorToCell(color, PivodDataGrid, row, 2);
+
+                col = 3;
+
+                foreach (var dictCell in pivod.TourPlacesModels)
+                {
+
+                    if (!string.IsNullOrEmpty(dictCell.Value))
+                    {
+                        SetColorToCell(color, PivodDataGrid, row, col);
+                    }
+
+                    col++;
+                }
+
                 row++;
                 col = 3;
 
@@ -153,6 +173,13 @@ namespace WpfApp1
             RowDefinition gridRowN = new RowDefinition();
             gridRowN.Height = new GridLength(RowHeightPixels);
             PivodGrid.RowDefinitions.Add(gridRowN);
+        }
+
+        private void SetColorToCell(SolidColorBrush color, DataGrid grid, int row, int col)
+        {
+            var selectedRow = grid.GetRow(row);
+            var columnCell = grid.GetCell(selectedRow, col);
+            columnCell.Background = color;
         }
 
         private void FillCell(SolidColorBrush color, string text, int row, int col)
@@ -352,5 +379,9 @@ namespace WpfApp1
             c1.Binding = new Binding(colBindingText);
             PivodDataGrid.Columns.Add(c1);
         }
+
+
+
+
     }
 }
