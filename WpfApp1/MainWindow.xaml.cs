@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Dynamic;
 using System.Linq;
 using System.Windows;
@@ -17,6 +18,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<PivodTableModel> pivodTableModels;
+
         #region DefaultSettings
 
         private const int RowHeightPixels = 45;
@@ -65,7 +68,9 @@ namespace WpfApp1
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            CreateAndConfigPivodTable(GetPivodTableModelsCollection());
+            pivodTableModels = GetPivodTableModelsCollection();
+
+            CreateAndConfigPivodTable(pivodTableModels);
         }
 
         private static List<PivodTableModel> GetPivodTableModelsCollection()
@@ -262,6 +267,7 @@ namespace WpfApp1
             PivodDataGrid.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
             PivodDataGrid.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             PivodDataGrid.IsReadOnly = true;
+            PivodDataGrid.SelectionMode = DataGridSelectionMode.Single;
         }
 
         private void CreateHeaderOfPivodTable(List<PivodTableModel> pivodModelList)
@@ -380,8 +386,17 @@ namespace WpfApp1
             PivodDataGrid.Columns.Add(c1);
         }
 
+        private void PivodDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var selectedRow = PivodDataGrid.SelectedItems[0];
 
+            var tourId = int.Parse(((IDictionary<String, Object>)selectedRow)["Column0"].ToString());
 
+            var tourObj = pivodTableModels.Where(r => r.TourId == tourId).First();
 
+            var window = new PopUpWindow(tourObj);
+
+            window.Show();
+        }
     }
 }

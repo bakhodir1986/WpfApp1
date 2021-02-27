@@ -17,7 +17,7 @@
             <Grid Name="PivodGrid" Grid.Column="0" Visibility="Hidden">
             
             </Grid>
-            <DataGrid x:Name="PivodDataGrid" Grid.Column="1"></DataGrid>
+            <DataGrid x:Name="PivodDataGrid" Grid.Column="1" MouseDoubleClick="PivodDataGrid_MouseDoubleClick"></DataGrid>
         </Grid>
 
 </Window>
